@@ -1,12 +1,12 @@
 package persistencia;
 
-import persistencia.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import logica.cancha;
 import logica.cliente;
+import logica.horario;
+import logica.reserva;
 import logica.torneo;
-import logica.usuario;
 import logica.usuario;
 import persistencia.exceptions.NonexistentEntityException;
 
@@ -104,6 +104,49 @@ public class controladoraPersistencia {
            Logger.getLogger(controladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
        }
     } 
+    
+    
+    //CRUD Horario
+    public void crearHorario(horario horario) {
+      horarioJpa.create(horario);
+    }
 
+    public void eliminarHorario(int id) {
+          try {
+            horarioJpa.destroy(id);   
+        } catch (NonexistentEntityException e) {
+            Logger.getLogger(controladoraPersistencia.class.getName()).log(Level.SEVERE, null, e);
+        }
+      }
 
+    public void modificarHorario(horario horario) {
+        try {
+                  horarioJpa.edit(horario);
+              } catch (Exception e) {
+                  Logger.getLogger(controladoraPersistencia.class.getName()).log(Level.SEVERE, null, e);
+              }
+          }
+    
+    
+    //CRUD Reserva
+    public void crearReserva(reserva reserva) {
+        reservaJpa.create(reserva);
+    }
+
+    public void eliminarReserva(int id) {
+           try {
+            reservaJpa.destroy(id);   
+        } catch (NonexistentEntityException e) {
+            Logger.getLogger(controladoraPersistencia.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+ 
+    public void modificarReserva(reserva reserva) {
+    try {
+            reservaJpa.edit(reserva);
+        } catch (Exception e) {
+            Logger.getLogger(controladoraPersistencia.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 }
